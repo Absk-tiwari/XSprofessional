@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Product Grid'])
+@extends('layouts.vertical', ['title' => 'Products'])
 
 @section('css')
 @vite(['node_modules/nouislider/dist/nouislider.min.css'])
@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-3 d-none">
         <div class="card bg-light-subtle">
             <div class="card-header border-0">
                 <div class="search-bar me-3 mb-1">
@@ -187,22 +187,28 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-12">
         <div class="card bg-light-subtle">
             <div class="card-header border-0">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-6">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item fw-medium"><a href="javascript: void(0);" class="text-dark">Categories</a></li>
-                            <li class="breadcrumb-item active">All Product</li>
+                            <li class="breadcrumb-item active">All Products</li>
                         </ol>
                         <p class="mb-0 text-muted">Showing all <span class="text-dark fw-semibold">5,786</span> items results</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="text-md-end mt-3 mt-md-0">
-                            <button type="button" class="btn btn-outline-secondary me-1"><i class="bx bx-cog me-1"></i>More Setting</button>
-                            <button type="button" class="btn btn-outline-secondary me-1"><i class="bx bx-filter-alt me-1"></i> Filters</button>
-                            <a href="{{ route('third', ['general', 'products', 'create'])}}" class="btn btn-success me-1"><i class="bx bx-plus"></i> New Product</a>
+                            <button type="button" class="btn btn-outline-secondary me-1 d-none">
+                                <i class="bx bx-cog me-1"></i>More Setting
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary me-1 d-none">
+                                <i class="bx bx-filter-alt me-1"></i> Filters
+                            </button>
+                            <a href="{{ route('third', ['general', 'products', 'create'])}}" class="btn btn-success me-1">
+                                <i class="bx bx-plus"></i> New Product
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -241,18 +247,12 @@
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-pencil align-middle'></i> Edit
+                                </a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-trash align-middle'></i> Delete
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -293,18 +293,12 @@
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-pencil align-middle'></i> Edit
+                                </a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-trash align-middle'></i> Delete
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -357,7 +351,7 @@
                                         <a href="#!" class="dropdown-item">Delete</a>
                                     </div>
                                 </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-pencil align-middle'></i> Edit</a>
                             </div>
                         </div>
                     </div>
@@ -398,18 +392,12 @@
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-pencil align-middle'></i> Edit
+                                </a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-trash align-middle'></i> Delete
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -461,7 +449,7 @@
                                         <a href="#!" class="dropdown-item">Delete</a>
                                     </div>
                                 </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-pencil align-middle'></i> Edit</a>
                             </div>
                         </div>
                     </div>
@@ -502,18 +490,12 @@
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-pencil align-middle'></i> Edit
+                                </a>
+                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                    <i class='bx bx-trash align-middle'></i> Delete
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -522,319 +504,6 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-7.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Kid's Yellow Shoes</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.5 <span class="text-muted fs-13">(321 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$100</span> $89 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-angle-bold-duotone"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-8.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Men Dark Brown Wallet</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.1 <span class="text-muted fs-13">(190 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$150</span> $132 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-9.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Sky Blue Mat Sunglass</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">3.5 <span class="text-muted fs-13">(298 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$100</span> $77 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-angle-bold-duotone"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-10.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Kid's Yellow T-shirt</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.1 <span class="text-muted fs-13">(156 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$140</span> $110 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-11.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">White Rubber Smart Watch</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">3.4 <span class="text-muted fs-13">(201 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$110</span> $77 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-12.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Men Brown Leather Shoes</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.1 <span class="text-muted fs-13">(370 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$250</span> $222 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-cart align-middle'></i> Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-angle-bold-duotone"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-
         </div>
 
         <div class="py-3 border-top">
