@@ -58,15 +58,14 @@
                     </ul>
                 </div> -->
             </li>
-
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('third', ['general', 'category', 'list'])}}">
                         <span class="nav-icon">
                             <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
                         </span>
                     <span class="nav-text"> Category </span>
                 </a>
-                <!-- <div class="collapse" id="sidebarCategory">
+                 <div class="collapse" id="sidebarCategory">
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
                             <a class="sub-nav-link" href="{{ route('third', ['general', 'category', 'list'])}}">List</a>
@@ -78,8 +77,8 @@
                             <a class="sub-nav-link" href="{{ route('third', ['general', 'category', 'create'])}}">Create</a>
                         </li>
                     </ul>
-                </div> -->
-            </li>
+                </div>
+            </li>-->
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('third', ['general', 'inventory', 'received-orders'])}}">
