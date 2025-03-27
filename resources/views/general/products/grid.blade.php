@@ -206,7 +206,7 @@
                             <button type="button" class="btn btn-outline-secondary me-1 d-none">
                                 <i class="bx bx-filter-alt me-1"></i> Filters
                             </button>
-                            <a href="{{ route('third', ['general', 'products', 'create'])}}" class="btn btn-success me-1">
+                            <a href="{{url('admin/product/create')}}" class="btn btn-success me-1">
                                 <i class="bx bx-plus"></i> New Product
                             </a>
                         </div>
@@ -215,11 +215,14 @@
             </div>
         </div>
         <div class="row">
+            @foreach($products as $product) 
             <div class="col-md-6 col-xl-3">
                 <div class="card">
-                    <img src="/images/product/p-1.png" alt="" class="img-fluid ">
+                    <img src="{{asset('storage/'.$product->image)}}" alt="" class="img-fluid ">
                     <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Men Black Slim Fit T-shirt</a>
+                        <a href="#" class="text-dark fw-medium fs-16">
+                            {{$product->product_name}}
+                        </a>
                         <div class="my-1">
                             <div class="d-flex gap-2 align-items-center">
                                 <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
@@ -243,14 +246,16 @@
                             </div>
                         </div>
                         <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$100</span> $80 <small class="text-muted"> (30% Off)</small>
+                            <!-- <span class="text-muted text-decoration-line-through">
+                            </span> -->
+                            ₹ {{$product->price}} <small class="text-muted"> (30% Off)</small>
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                <a href="{{ route('products.edit', ['product'=> $product->id ])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
                                     <i class='bx bx-pencil align-middle'></i> Edit
                                 </a>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                <a href="#" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
                                     <i class='bx bx-trash align-middle'></i> Delete
                                 </a>
                             </div>
@@ -261,249 +266,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-2.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Olive Green Leather Bag</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.1 <span class="text-muted fs-13">(143 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$150</span> $136 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
-                                    <i class='bx bx-pencil align-middle'></i> Edit
-                                </a>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
-                                    <i class='bx bx-trash align-middle'></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-angle-bold-duotone"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-3.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Women Golden Dress</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.4 <span class="text-muted fs-13">(174 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$250</span> $219 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-pencil align-middle'></i> Edit</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-4.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Gray Cap For Men</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.2 <span class="text-muted fs-13">(23 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$100</span> $76 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
-                                    <i class='bx bx-pencil align-middle'></i> Edit
-                                </a>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
-                                    <i class='bx bx-trash align-middle'></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-5.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Dark Green Cargo Pent</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.4 <span class="text-muted fs-13">(109 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$130</span> $110 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <div class="dropdown">
-                                    <a href="#" class="btn btn-soft-primary border border-primary-subtle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
-                                    <div class="dropdown-menu">
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Edit</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Overview</a>
-                                        <!-- item-->
-                                        <a href="#!" class="dropdown-item">Delete</a>
-                                    </div>
-                                </div>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100"><i class='bx bx-pencil align-middle'></i> Edit</a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-                <div class="card">
-                    <img src="/images/product/p-6.png" alt="" class="img-fluid ">
-                    <div class="card-body bg-light-subtle rounded-bottom">
-                        <a href="{{ route('third', ['general', 'products', 'detail'])}}" class="text-dark fw-medium fs-16">Orange Headphone</a>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.2 <span class="text-muted fs-13">(200 Review)</span></p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            <span class="text-muted text-decoration-line-through">$250</span> $231 <small class="text-muted"> (30% Off)</small>
-                        </h4>
-                        <div class="mt-3">
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
-                                    <i class='bx bx-pencil align-middle'></i> Edit
-                                </a>
-                                <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
-                                    <i class='bx bx-trash align-middle'></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="position-absolute top-0 end-0 p-3">
-                        <button type="button" class="btn btn-soft-danger avatar-sm d-inline-flex align-items-center justify-content-center fs-20 rounded-circle"><iconify-icon icon="solar:heart-broken"></iconify-icon></button>
-                    </span>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="py-3 border-top">

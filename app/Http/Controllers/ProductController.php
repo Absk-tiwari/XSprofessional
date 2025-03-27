@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Product; 
+use Illuminate\Support\Facades\Storage;
+
+class ProductController extends Controller
+{
+    
+    public function index()
+    {
+        $products = Product::all();
+        return view('general.products.grid', compact('products'));
+    }
+
+    
+
+    public function edit(Product $product)
+    {
+        return view('general.products.edit', compact('product'));
+    }
+    
+    public function store(Request $request)
+    {
+        $product = new Product();
+        $product->product_name = $request->product_name;
+        $product->product_category = $request->product_category;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount = $request->discount;
+        $product->status = $request->status ?? 1;
+
+        // Handle Image Upload
+        if ($request->hasFile('image')) {
+            $product->image = $request->file('image')->store('products', 'public'); 
+        }
+        $product->save();
+        return redirect('admin/general/products/grid')->with('success', 'Product created successfully!');
+ 
+    }  
+
+    public function update(Request $request, Product $product)
+{
+    // Update product fields
+    $product->product_name = $request->product_name;
+    $product->product_category = $request->product_category;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->discount = $request->discount;
+    $product->status = $request->status ?? 1;
+    $product->filteritems = $request->filteritems ?? $product->filteritems; // Keep old value if not provided
+
+    // Handle Image Update
+    if ($request->hasFile('image')) {
+        // Delete old image if it exists
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+        $product->image = $request->file('image')->store('products', 'public');
+    }
+
+    $product->save();
+
+    return redirect('admin/general/products/grid')->with('success', 'Product updated successfully!');
+}
+}
