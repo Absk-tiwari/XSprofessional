@@ -14,7 +14,7 @@
                         <h3 class="fw-bold text-center lh-base">Ooops! The Page You're Looking For Was Not Found</h3>
                         <p class="text-muted text-center mt-1 mb-4">Sorry, we couldn't find the page you were looking for. We suggest that you return to main sections</p>
                         <div class="text-center">
-                            <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="btn btn-primary">Back To Home</a>
+                            <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="btn btn-primary">Back To Home</a>
                         </div>
                     </div>
                 </div>

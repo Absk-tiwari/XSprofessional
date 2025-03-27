@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-xl-12 col-lg-12">
-        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -110,7 +110,7 @@
                         <button type="submit" class="btn btn-primary w-100">Update Product</button>
                     </div>
                     <div class="col-lg-2">
-                        <a href="{{ route('products.index') }}" class="btn btn-outline-secondary w-100">Cancel</a>
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary w-100">Cancel</a>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ class ProductController extends Controller
     
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(1);
         return view('general.products.grid', compact('products'));
     }
 
@@ -37,13 +37,13 @@ class ProductController extends Controller
             $product->image = $request->file('image')->store('products', 'public'); 
         }
         $product->save();
-        return redirect('admin/general/products/grid')->with('success', 'Product created successfully!');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully!');
  
     }  
 
     public function update(Request $request, Product $product)
 {
-    // Update product fields
+   
     $product->product_name = $request->product_name;
     $product->product_category = $request->product_category;
     $product->description = $request->description;
@@ -52,9 +52,9 @@ class ProductController extends Controller
     $product->status = $request->status ?? 1;
     $product->filteritems = $request->filteritems ?? $product->filteritems; // Keep old value if not provided
 
-    // Handle Image Update
+    
     if ($request->hasFile('image')) {
-        // Delete old image if it exists
+  
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
         }
@@ -65,4 +65,5 @@ class ProductController extends Controller
 
     return redirect('admin/general/products/grid')->with('success', 'Product updated successfully!');
 }
+
 }

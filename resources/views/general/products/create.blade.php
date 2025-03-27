@@ -6,11 +6,12 @@
 
 @section('content')
 
-<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf  
 
     <!-- Image Upload -->
     <div class="card">
+
         <div class="card-header">
             <h4 class="card-title">Add Product Photo</h4>
         </div>
@@ -89,13 +90,11 @@
                 <button type="submit" class="btn btn-primary w-100">Create Product</button>
             </div>
             <div class="col-lg-2">
-                <a href="{{ route('products.index') }}" class="btn btn-outline-secondary w-100">Cancel</a>
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary w-100">Cancel</a>
             </div>
         </div>
     </div>
 </form>
-
-
 @endsection
 
 @section('script-bottom')

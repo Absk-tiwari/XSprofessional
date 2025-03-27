@@ -166,29 +166,29 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Welcome Gaston!</h6>
-                        <a class="dropdown-item" href="{{ route('second', ['users', 'pages-profile'])}}">
+                        <a class="dropdown-item" href="{{ route('admin.second', ['users', 'pages-profile'])}}">
                             <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span
                                 class="align-middle">Profile</span>
                         </a>
-                    <a class="dropdown-item" href="{{ route('second', ['users', 'chat'])}}">
+                    <a class="dropdown-item" href="{{ route('admin.second', ['users', 'chat'])}}">
                             <i class="bx bx-message-dots text-muted fs-18 align-middle me-1"></i><span
                                 class="align-middle">Messages</span>
                         </a>
 
-                        <a class="dropdown-item" href="{{ route('second', ['users', 'pricing'])}}">
+                        <a class="dropdown-item" href="{{ route('admin.second', ['users', 'pricing'])}}">
                             <i class="bx bx-wallet text-muted fs-18 align-middle me-1"></i><span class="align-middle">Pricing</span>
                         </a>
-                        <a class="dropdown-item" href="{{ route('second', ['users', 'faqs'])}}">
+                        <a class="dropdown-item" href="{{ route('admin.second', ['users', 'faqs'])}}">
                             <i class="bx bx-help-circle text-muted fs-18 align-middle me-1"></i><span
                                 class="align-middle">Help</span>
                         </a>
-                        <a class="dropdown-item" href="{{ route('second', [ 'auth' , 'lock-screen']) }}">
+                        <a class="dropdown-item" href="{{ route('admin.second', [ 'auth' , 'lock-screen']) }}">
                             <i class="bx bx-lock text-muted fs-18 align-middle me-1"></i><span class="align-middle">Lock screen</span>
                         </a>
 
                         <div class="dropdown-divider my-1"></div>
 
-                        <a class="dropdown-item text-danger" href="{{ route('second', [ 'auth' , 'login']) }}">
+                        <a class="dropdown-item text-danger" href="{{ route('admin.second', [ 'auth' , 'login']) }}">
                             <i class="bx bx-log-out fs-18 align-middle me-1"></i><span
                                 class="align-middle">Logout</span>
                         </a>

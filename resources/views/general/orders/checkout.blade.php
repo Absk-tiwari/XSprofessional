@@ -516,7 +516,7 @@
         </div>
 
         <div class="main-btn my-4 text-end">
-            <a href="{{ route('third', ['general', 'orders', 'cart'])}}" class="btn btn-danger">Back To Cart</a>
+            <a href="{{ route('admin.third', ['general', 'orders', 'cart'])}}" class="btn btn-danger">Back To Cart</a>
             <a href="#!" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout Order</a>
         </div>
         <div data-bs-theme="dark">

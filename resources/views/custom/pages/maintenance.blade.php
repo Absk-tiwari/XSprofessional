@@ -9,11 +9,11 @@
                 <div class="row align-items-center justify-content-center h-100">
                     <div class="col-lg-10">
                         <div class="auth-logo mb-3 text-center">
-                            <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="logo-dark">
+                            <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="logo-dark">
                                 <img src="/images/logo-dark.png" height="24" alt="logo dark">
                             </a>
 
-                            <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="logo-light">
+                            <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="logo-light">
                                 <img src="/images/logo-light.png" height="24" alt="logo light">
                             </a>
                         </div>
@@ -25,7 +25,7 @@
                             We'll be back shortly.</p>
 
                         <div class="text-center">
-                            <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="btn btn-primary">Back To Home</a>
+                            <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="btn btn-primary">Back To Home</a>
                         </div>
                     </div>
                 </div>

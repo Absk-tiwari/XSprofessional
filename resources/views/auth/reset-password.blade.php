@@ -9,11 +9,11 @@
                         <div class="col-lg-6 py-lg-5">
                             <div class="d-flex flex-column h-100 justify-content-center">
                                 <div class="auth-logo mb-4">
-                                    <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="logo-dark">
+                                    <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="logo-dark">
                                         <img src="/images/logo-dark.png" height="24" alt="logo dark">
                                     </a>
 
-                                    <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="logo-light">
+                                    <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="logo-light">
                                         <img src="/images/logo-light.png" height="24" alt="logo light">
                                     </a>
                                 </div>
@@ -34,7 +34,7 @@
                                     </form>
                                 </div>
 
-                                <p class="mt-5 text-danger text-center">Back to<a href="{{ route('second', [ 'auth' , 'login']) }}" class="text-dark fw-bold ms-1">Login</a></p>
+                                <p class="mt-5 text-danger text-center">Back to<a href="{{ route('admin.second', [ 'auth' , 'login']) }}" class="text-dark fw-bold ms-1">Login</a></p>
                             </div>
                         </div>
                     </div>

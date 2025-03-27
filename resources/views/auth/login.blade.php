@@ -9,11 +9,11 @@
                         <div class="col-lg-6 py-lg-5">
                             <div class="d-flex flex-column h-100 justify-content-center">
                                 <div class="auth-logo mb-4">
-                                    <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="logo-dark">
+                                    <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="logo-dark">
                                         <img src="/images/logo-dark.png" height="24" alt="logo dark">
                                     </a>
 
-                                    <a href="{{ route('second', [ 'dashboards' , 'index']) }}" class="logo-light">
+                                    <a href="{{ route('admin.second', [ 'dashboards' , 'index']) }}" class="logo-light">
                                         <img src="/images/logo-light.png" height="24" alt="logo light">
                                     </a>
                                 </div>
@@ -39,7 +39,7 @@
                                                    value="test@example.com">
                                         </div>
                                         <div class="mb-3">
-                                            <a href="{{ route('second', [ 'auth' , 'reset-password']) }}"
+                                            <a href="{{ route('admin.second', [ 'auth' , 'reset-password']) }}"
                                                class="float-end text-muted text-unline-dashed ms-1">Reset password</a>
                                             <label class="form-label" for="example-password">Password</label>
                                             <input type="password" id="example-password" class="form-control"
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
 
-                                <p class="text-danger text-center">Don't have an account? <a href="{{ route('second', [ 'auth' , 'register']) }}"
+                                <p class="text-danger text-center">Don't have an account? <a href="{{ route('admin.second', [ 'auth' , 'register']) }}"
                                                                                              class="text-dark fw-bold ms-1">Register</a></p>
                             </div>
                         </div>

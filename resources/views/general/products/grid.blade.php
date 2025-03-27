@@ -196,7 +196,9 @@
                             <li class="breadcrumb-item fw-medium"><a href="javascript: void(0);" class="text-dark">Categories</a></li>
                             <li class="breadcrumb-item active">All Products</li>
                         </ol>
-                        <p class="mb-0 text-muted">Showing all <span class="text-dark fw-semibold">5,786</span> items results</p>
+                        <p class="mb-0 text-muted">Showing all <span class="text-dark fw-semibold">
+                            {{$products->count()}}
+                        </span> items results</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="text-md-end mt-3 mt-md-0">
@@ -206,7 +208,7 @@
                             <button type="button" class="btn btn-outline-secondary me-1 d-none">
                                 <i class="bx bx-filter-alt me-1"></i> Filters
                             </button>
-                            <a href="{{url('admin/product/create')}}" class="btn btn-success me-1">
+                            <a href="{{route('admin.products.create')}}" class="btn btn-success me-1">
                                 <i class="bx bx-plus"></i> New Product
                             </a>
                         </div>
@@ -252,7 +254,7 @@
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">
-                                <a href="{{ route('products.edit', ['product'=> $product->id ])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
+                                <a href="{{ route('admin.products.edit', ['product'=> $product->id ])}}" class="btn btn-outline-dark border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
                                     <i class='bx bx-pencil align-middle'></i> Edit
                                 </a>
                                 <a href="#" class="btn btn-orange border border-secondary-subtle d-flex align-items-center justify-content-center gap-1 w-100">
@@ -271,13 +273,7 @@
 
         <div class="py-3 border-top">
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end mb-0">
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
-                </ul>
+                {{ $products->links('pagination::bootstrap-4') }}
             </nav>
         </div>
 

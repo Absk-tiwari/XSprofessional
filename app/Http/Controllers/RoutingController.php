@@ -48,6 +48,7 @@ class RoutingController extends BaseController
      */
     public function secondLevel(Request $request, $first, $second)
     {
+        
         return view($first . '.' . $second);
     }
 
@@ -58,4 +59,5 @@ class RoutingController extends BaseController
     {
         return view($first . '.' . $second . '.' . $third);
     }
+    
 }

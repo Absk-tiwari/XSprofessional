@@ -330,8 +330,8 @@
         </div>
 
         <div class="main-btn my-4 text-end">
-            <a href="{{ route('third', ['general', 'products', 'grid'])}}" class="btn btn-primary">Continue Shopping</a>
-            <a href="{{ route('third', ['general', 'orders', 'checkout'])}}" class="btn btn-success">Buy Now</a>
+            <a href="{{ route('admin.third', ['general', 'products', 'grid'])}}" class="btn btn-primary">Continue Shopping</a>
+            <a href="{{ route('admin.third', ['general', 'orders', 'checkout'])}}" class="btn btn-success">Buy Now</a>
         </div>
     </div>
 </div>
