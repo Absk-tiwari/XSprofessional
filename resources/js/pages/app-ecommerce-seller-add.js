@@ -13,6 +13,7 @@ Dropzone.autoDiscover = false;
 var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
 if (dropzonePreviewNode) {
     dropzonePreviewNode.id = "";
+    console.log("Here is in seller-add.js")
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
     dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
     var dropzone = new Dropzone(".dropzone", {

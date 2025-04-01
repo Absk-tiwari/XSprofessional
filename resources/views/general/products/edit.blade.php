@@ -17,18 +17,41 @@
                     <h4 class="card-title">Update Product Photo</h4>
                 </div>
                 <div class="card-body">
-                    <div class="dropzone bg-light-subtle py-5">
-                        <div class="fallback">
-                            <input type="file" name="image" multiple>
-                        </div>
-                        <div class="dz-message needsclick">
+                    <input type="file" multiple="multiple" name="images[]" class="d-none img-">
+                    <div class="dropzone bg-light-subtle py-5 dz-clickable">
+                        <div class="dz-message needsclick" onclick="$('.img-').trigger('click')">
                             <i class="bx bx-cloud-upload fs-48 text-primary"></i>
                             <h3 class="mt-4">Drop your images here, or <span class="text-primary">click to browse</span></h3>
                             <span class="text-muted fs-13">
-                                1600 x 1200 (4:3) recommended. PNG, JPG, and GIF files are allowed.
+                                1600 x 1200 (4:3) recommended. PNG, JPG and GIF files are allowed
                             </span>
                         </div>
                     </div>
+
+                    <ul class="list-unstyled mb-0" id="dropzone-preview">
+                        <li class="mt-2" id="dropzone-preview-list">
+                            <!-- This is used as the file preview template -->
+                            <div class="border rounded">
+                                <div class="d-flex p-2">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="avatar-sm bg-light rounded">
+                                            <img data-dz-thumbnail class="img-fluid rounded d-block" src="#" alt="Image" />
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="pt-1">
+                                            <h5 class="fs-14 mb-1" data-dz-name>&</h5>
+                                            <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                            <strong class="error text-primary" data-dz-errormessage></strong>
+                                        </div>
+                                    </div>
+                                    <div class="flex-shrink-0 ms-3">
+                                        <button data-dz-remove class="btn btn-sm btn-primary">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

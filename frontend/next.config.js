@@ -7,8 +7,8 @@ module.exports = {
     //         },
     //     ];
     // },
-    basePath:'/store',
-    assetPrefix: 'http://127.0.0.1:8000/store',
+    // basePath:'/store',
+    // assetPrefix: 'http://127.0.0.1:8000/store',
     // images: {
     //     loader: 'default',
     //     path: '/store/assets/img', // Ensures next/image works

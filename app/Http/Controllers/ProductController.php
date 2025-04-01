@@ -3,67 +3,71 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product; 
-use Illuminate\Support\Facades\Storage;
-
+use App\Models\Product;
 class ProductController extends Controller
 {
-    
+
     public function index()
     {
         $products = Product::paginate(1);
         return view('general.products.grid', compact('products'));
     }
 
-    
+    public function trending(Request $request){
+        return Product::orderBy('ordered','desc')->get();
+    }
 
     public function edit(Product $product)
     {
         return view('general.products.edit', compact('product'));
     }
-    
+
     public function store(Request $request)
     {
         $product = new Product();
-        $product->product_name = $request->product_name;
-        $product->product_category = $request->product_category;
+        $product->name = $request->name;
+        $product->category = $request->product_category;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->discount = $request->discount;
-        $product->status = $request->status ?? 1;
-
-        // Handle Image Upload
-        if ($request->hasFile('image')) {
-            $product->image = $request->file('image')->store('products', 'public'); 
+        $product->isStocked = $request->status ?? 1;
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', 'public');
+                $images[]= $path;
+            }
         }
+        $product->imageGallery = $images;
+
         $product->save();
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully!');
- 
-    }  
 
-    public function update(Request $request, Product $product)
-{
-    // dd('$aaua');
-    $product->product_name = $request->product_name;
-    $product->product_category = $request->product_category;
-    $product->description = $request->description;
-    $product->price = $request->price;
-    $product->discount = $request->discount;
-    $product->status = $request->status ?? 1;
-    $product->filteritems = $request->filteritems ?? $product->filteritems; // Keep old value if not provided
-
-    
-    if ($request->hasFile('image')) {
-  
-        if ($product->image) {
-            Storage::disk('public')->delete($product->image);
-        }
-        $product->image = $request->file('image')->store('products', 'public');
     }
 
-    $product->save();
+    public function update(Request $request, Product $product)
+    {
+        // dd('$aaua');
+        $product->name = $request->name;
+        $product->category = $request->product_category;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount = $request->discount;
+        $product->isStocked = $request->status ?? 1;
+        $product->isNew = false;
+        $product->filteritems = $request->filteritems ?? $product->filteritems; // Keep old value if not provided
+        $images=[];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', 'public');
+                $images[]= $path;
+            }
+        }
+        $product->imageGallery = $images;
 
-    return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
-}
+        $product->save();
+
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
+    }
 
 }

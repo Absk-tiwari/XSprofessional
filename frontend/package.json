@@ -2,7 +2,6 @@
   "name": "xs",
   "private": true,
   "version":"1.0.0",
-  "homepage": "store",
   "scripts": {
     "dev": "next",
     "build": "next build",

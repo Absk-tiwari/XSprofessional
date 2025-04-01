@@ -2,14 +2,15 @@ import { ProductsCarousel } from 'components/Product/Products/ProductsCarousel';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 import { useEffect, useState } from 'react';
 import productData from 'data/product/product';
+import api from 'utils/api';
 
 export const Trending = () => {
   const trendingProducts = [...productData];
   const [products, setProducts] = useState(trendingProducts);
   const [filterItem, setFilterItem] = useState('makeup');
   useEffect(()=> {
-    fetch(process.env.NEXT_PUBLIC_API_URL+'/trending-products').then(({data})=> {
-      // console.log(data)
+    api.get('api/trending-products').then(({data})=> {
+      console.log(data)
     }).catch( er => console.log(er))
   },[])
 

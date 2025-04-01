@@ -16,7 +16,7 @@ class HandleCors
     public function handle(Request $request, Closure $next)
     {
         return $next($request)
-            ->header("Access-Control-Allow-Origin", "http://localhost:3000") // Allow frontend origin
+            ->header("Access-Control-Allow-Origin", "*") // Allow frontend origin
             ->header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
             ->header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, Authorization, X-CSRF-TOKEN")
             ->header("Access-Control-Allow-Credentials", "true"); // Required for cookies/auth

@@ -10,6 +10,7 @@ Dropzone.autoDiscover = false;
 var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
 dropzonePreviewNode.id = "";
 if (dropzonePreviewNode) {
+    console.log("Here is in fileupload.js")
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
     dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
     var dropzone = new Dropzone(".dropzone", {

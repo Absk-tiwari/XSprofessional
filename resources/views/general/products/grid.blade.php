@@ -217,16 +217,17 @@
             </div>
         </div>
         <div class="row">
-            @foreach($products as $product) 
+            @foreach($products as $product)
             <div class="col-md-6 col-xl-3">
                 <div class="card">
-                    <img src="{{asset('storage/'.$product->image)}}" alt="" class="img-fluid ">
+                    <img src="{{asset('storage/'.$product->imageGallery[0]??'')}}" alt="" class="img-fluid ">
                     <div class="card-body bg-light-subtle rounded-bottom">
                         <a href="#" class="text-dark fw-medium fs-16">
-                            {{$product->product_name}}
+                            {{$product->name}}
                         </a>
                         <div class="my-1">
                             <div class="d-flex gap-2 align-items-center">
+                                @if($product->reviews->count())
                                 <ul class="d-flex text-warning m-0 fs-18  list-unstyled">
                                     <li>
                                         <i class="bx bxs-star"></i>
@@ -244,13 +245,14 @@
                                         <i class="bx bxs-star-half"></i>
                                     </li>
                                 </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">4.5 <span class="text-muted fs-13">(55 Review)</span></p>
+                                <p class="mb-0 fw-medium fs-15 text-dark">{{$product->reviews->sum('rating') / $product->reviews->count() }} <span class="text-muted fs-13">({{$product->reviews->count()}} Review)</span></p>
+                                @endif
                             </div>
                         </div>
                         <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
                             <!-- <span class="text-muted text-decoration-line-through">
                             </span> -->
-                            ₹ {{$product->price}} <small class="text-muted"> (30% Off)</small>
+                            ₹ {{$product->price}} <small class="text-muted"> {{ $product->discount? "($product->discount% Off)":'' }}</small>
                         </h4>
                         <div class="mt-3">
                             <div class="d-flex gap-2">

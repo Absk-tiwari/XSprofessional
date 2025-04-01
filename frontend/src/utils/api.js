@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-    withCredentials: true, // Required for Sanctum CSRF handling
+    // withCredentials: true, // Required for Sanctum CSRF handling
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -12,7 +12,7 @@ const api = axios.create({
 export const getCsrfToken = async () => {
     await api.get("/sanctum/csrf-cookie");
 };
-  
+
 export const request = async ({ ...options }, router) => {
   client.defaults.headers.common.Authorization = `Bearer ${getCookie("uate")}`;
   const onSuccess = (response) => response;

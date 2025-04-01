@@ -45,6 +45,7 @@ if (dropzonePreviewNode) {
     var dropzone = new Dropzone(".dropzone", {
         url: "https://httpbin.org/post",
         method: "post",
+        autoProcessQueue: false,
         previewTemplate: previewTemplate,
         previewsContainer: "#dropzone-preview",
     });
@@ -56,4 +57,3 @@ var exDate = document.getElementById("ex-date");
 if (exDate) {
     exDate.flatpickr()
 }
-  
