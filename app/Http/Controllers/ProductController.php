@@ -43,7 +43,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
 {
-   
+    // dd('$aaua');
     $product->product_name = $request->product_name;
     $product->product_category = $request->product_category;
     $product->description = $request->description;
@@ -63,7 +63,7 @@ class ProductController extends Controller
 
     $product->save();
 
-    return redirect('admin/general/products/grid')->with('success', 'Product updated successfully!');
+    return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
 }
 
 }

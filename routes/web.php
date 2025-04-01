@@ -20,7 +20,6 @@ Route::group(['prefix' => '/admin', 'as'=>'admin.', 'middleware' => 'auth'], fun
      
 });
 
-// frontend portion
 Route::group(['prefix','/store'], function(){
     Route::get('/{path?}', function ($path='index') {
         if(str_contains($path, "dashboard")) {
