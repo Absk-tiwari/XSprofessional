@@ -7,6 +7,7 @@ export const ContactFrom = () => {
     name: "",
     email: "",
     message: "",
+    subject:"",
   });
   const [status, setStatus] = useState(""); // Success/Error message
   // Handle input changes
@@ -16,10 +17,18 @@ export const ContactFrom = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
+        for (let key in formData) {
+            if (formData[key]=== ""){
+                return toast.error(capitalFirst(key) + " is empty");
+            }
+            if(key ==='email') {
+                const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData[key])
+                if(!isValid) return toast.error("Invalid email!")
+            }
+        }
       const response = await api.post('/contact', formData);
-      console.log(response.data)
       if (response.data.status) {
         toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" }); // Clear form
@@ -27,7 +36,7 @@ export const ContactFrom = () => {
         setStatus("Failed to send message.");
       }
     } catch (error) {
-      window.alert("error aaya hai"+error.message)
+      console.log(error.message)
       setStatus("An error occurred. Please try again.");
     }
   };

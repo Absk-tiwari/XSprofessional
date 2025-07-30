@@ -2,6 +2,14 @@ export const header = {
   logo: '/assets/img/products/3.png',
 };
 
+export const placeholder = {
+    img: '/assets/img/placeholder.png',
+    noProduct: '/assets/img/no-products.png',
+    profile: '/assets/img/profile.png',
+    whatsapp: '/assets/img/whatsapp.png',
+    loader: '/assets/img/loader.gif',
+    promoVideo: '/assets/videos/promo.mp4'
+}
 export const navItem = [
   {
     name: 'Home',
@@ -9,7 +17,7 @@ export const navItem = [
   },
   {
     name: 'Treatment',
-    path: '/blog',
+    path: '/treatment',
   },
   {
     name: 'shop',

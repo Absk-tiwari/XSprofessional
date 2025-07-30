@@ -15,7 +15,7 @@ const breadcrumbsData = [
   },
 ];
 const WishlistPage = () => {
-  const d = useAuthGuard()
+//   const d = useAuthGuard()
   return (
     <PublicLayout breadcrumb={breadcrumbsData} breadcrumbTitle='Wishlist'>
       <Wishlist />

@@ -1,12 +1,20 @@
 import { ProductsCarousel } from 'components/Product/Products/ProductsCarousel';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 import productData from 'data/product/product';
+import { useEffect, useState } from 'react';
+import { useGetNewArrivalsQuery } from 'services/api';
 
 export const NewArrivals = () => {
   const newArrival = [...productData].filter(
     (arrival) => arrival.isNew === true
   );
-
+  const [ products , setProducts] = useState([...newArrival]);
+  const {data, isLoading, isSuccess} = useGetNewArrivalsQuery()
+  useEffect(()=> {
+    if(data?.data) {
+        setProducts(data.data)
+    }
+  },[data, isSuccess])
   return (
     <>
       {/* <!-- BEGIN NEW ARRIVALS --> */}
@@ -18,10 +26,9 @@ export const NewArrivals = () => {
         />
 
         <div className='products-items'>
-          <ProductsCarousel products={newArrival} />
+            <ProductsCarousel products={products} />
         </div>
       </section>
-      {/* <!-- NEW ARRIVALS EOF --> */}
     </>
   );
 };

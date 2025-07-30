@@ -214,6 +214,7 @@ footer {
   }
   .footer-nav__col:last-of-type {
     margin-right: 0;
+    width: 100%;
   }
   .footer-nav__col:last-of-type ul li .footer-nav__col-phones a {
     font-size: 16px;
@@ -271,6 +272,7 @@ footer {
   }
   .footer-nav {
     flex-wrap: wrap;
+    justify-content:center;
   }
   .footer-nav__col {
     max-width: 100%;
@@ -278,6 +280,8 @@ footer {
     margin-bottom: 25px;
     &:last-of-type {
       margin-bottom: 0;
+      text-align: center;
+      width: 100%;
     }
   }
   .footer-nav__col:last-of-type ul li {

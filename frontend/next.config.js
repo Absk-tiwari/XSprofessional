@@ -1,3 +1,4 @@
+const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
     // async rewrites() {
     //     return [
@@ -7,10 +8,11 @@ module.exports = {
     //         },
     //     ];
     // },
-    // basePath:'/store',
-    // assetPrefix: 'http://127.0.0.1:8000/store',
-    // images: {
-    //     loader: 'default',
-    //     path: '/store/assets/img', // Ensures next/image works
-    // },
+    basePath:'/store',
+    assetPrefix: '/store',
+    images: {
+        loader: 'default',
+        path: '/store/assets/img', // Ensures next/image works
+        domains: isDev ? ['localhost']: ['xs.dftech.in'],
+    },
 };

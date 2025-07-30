@@ -1,4 +1,3 @@
-import productData from 'data/product/product';
 import { useContext, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import socialData from 'data/social';
@@ -6,32 +5,41 @@ import { Reviews } from '../Reviews/Reviews';
 import { ReviewFrom } from '../ReviewForm/ReviewFrom';
 import { useRouter } from 'next/router';
 import { CartContext } from 'pages/_app';
+import api from 'utils/api';
+import { useSelector } from 'react-redux';
 
 export const ProductDetails = () => {
   const router = useRouter();
   const { cart, setCart } = useContext(CartContext);
-
   const socialLinks = [...socialData];
-  const products = [...productData];
   const [product, setProduct] = useState(null);
   const [addedInCart, setAddedInCart] = useState(false);
+  const {products:stateProducts, settings } = useSelector(state => state.auth)
 
   useEffect(() => {
     if (router.query.id) {
-      const data = products.find((pd) => pd.id === router.query.id);
-      setProduct(data);
+        let viewed = JSON.parse(localStorage.getItem('xs_viewed')??'[]');
+        if(viewed.indexOf(router.query.id)===-1) {
+            viewed.push(router.query.id)
+            localStorage.setItem('xs_viewed', JSON.stringify(viewed))
+        }
+        const data = stateProducts? stateProducts.find((pd) => pd.id === parseInt(router.query.id)): null;
+        if(!data){
+            api.get(`/product/${router.query.id}`).then(({data:response})=> setProduct(response.data))
+        } else {
+            setProduct(data);
+        }
     }
   }, [router.query.id]);
 
   useEffect(() => {
     if (product) {
-      setAddedInCart(Boolean(cart?.find((pd) => pd.id === product.id)));
+        setAddedInCart(Boolean(cart?.find((pd) => pd.id === product.id)));
     }
   }, [product, cart]);
 
   const [quantity, setQuantity] = useState(1);
   const [tab, setTab] = useState(2);
-  const [activeColor, setActiveColor] = useState(2);
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
 
@@ -43,37 +51,27 @@ export const ProductDetails = () => {
   if (!product) return <p>Loading...</p>;
   return (
     <>
-      {/* <!-- BEGIN PRODUCT --> */}
       <div className='product'>
         <div className='wrapper'>
           <div className='product-content'>
-            {/* <!-- Product Main Slider --> */}
             <div className='product-slider'>
               <div className='product-slider__main'>
                 <Slider
-                  fade={true}
-                  asNavFor={nav2}
-                  arrows={false}
-                  lazyLoad={true}
-                  ref={(slider1) => setNav1(slider1)}
+                    fade={true}
+                    asNavFor={nav2}
+                    arrows={false}
+                    lazyLoad={true}
+                    ref={(slider1) => setNav1(slider1)}
                 >
-                  {product.imageGallery.map((img, index) => (
+                  {product.imageGallery?.length ? product.imageGallery.map((img, index) => (
                     <div key={index} className='product-slider__main-item'>
-                      <div className='products-item__type'>
-                        {product.isSale && (
-                          <span className='products-item__sale'>sale</span>
-                        )}
-                        {product.isNew && (
-                          <span className='products-item__new'>new</span>
-                        )}
-                      </div>
-                      <img src={process.env.NEXT_PUBLIC_BASE_PATH+img} alt='product' />
+                      <img src={img} alt='product' />
                     </div>
-                  ))}
+                  )): <div className='product-slider__main-item'>
+                  <img src={process.env.NEXT_PUBLIC_ASSET_URL + '/placeholder.png'} alt='product' />
+                </div>}
                 </Slider>
               </div>
-
-              {/* <!-- Product Slide Nav --> */}
               <div className='product-slider__nav'>
                 <Slider
                   arrows={false}
@@ -85,7 +83,7 @@ export const ProductDetails = () => {
                 >
                   {product.imageGallery.map((img, index) => (
                     <div key={index} className='product-slider__nav-item'>
-                      <img src={process.env.NEXT_PUBLIC_BASE_PATH+img} alt='product' />
+                      <img src={img} alt='product' />
                     </div>
                   ))}
                 </Slider>
@@ -102,14 +100,12 @@ export const ProductDetails = () => {
               <span className='product-num'>SKU: {product.productNumber}</span>
               {product.oldPrice ? (
                 <span className='product-price'>
-                  <span>${product.oldPrice}</span>${product.price}
+                  <span>&#8377;{product.oldPrice}</span>&#8377;{product.price}
                 </span>
               ) : (
-                <span className='product-price'>${product.price}</span>
+                <span className='product-price'>&#8377;{product.price}</span>
               )}
               <p>{product.content}</p>
-
-              {/* <!-- Social Share Link --> */}
               <div className='contacts-info__social'>
                 <span>Find us here:</span>
                 <ul>
@@ -123,23 +119,7 @@ export const ProductDetails = () => {
                 </ul>
               </div>
 
-              {/* <!-- Product Color info--> */}
               <div className='product-options'>
-                <div className='product-info__color'>
-                  <span>Color:</span>
-                  <ul>
-                    {product?.colors.map((color, index) => (
-                      <li
-                        onClick={() => setActiveColor(index)}
-                        className={activeColor === index ? 'active' : ''}
-                        key={index}
-                        style={{ backgroundColor: color }}
-                      ></li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* <!-- Order Item counter --> */}
                 <div className='product-info__quantity'>
                   <span className='product-info__quantity-title'>
                     Quantity:
@@ -184,8 +164,6 @@ export const ProductDetails = () => {
               </div>
             </div>
           </div>
-
-          {/* <!-- Product Details Tab --> */}
           <div className='product-detail'>
             <div className='tab-wrap product-detail-tabs'>
               <ul className='nav-tab-list tabs pd-tab'>
@@ -203,7 +181,6 @@ export const ProductDetails = () => {
                 </li>
               </ul>
               <div className='box-tab-cont'>
-                {/* <!-- Product description --> */}
                 {tab === 1 && (
                   <div className='tab-cont'>
                     <p>{product.description}</p>
@@ -213,11 +190,8 @@ export const ProductDetails = () => {
 
                 {tab === 2 && (
                   <div className='tab-cont product-reviews'>
-                    {/* <!-- Product Reviews --> */}
-                    <Reviews reviews={product.reviews} />
-
-                    {/* <!-- Product Review Form --> */}
-                    <ReviewFrom />
+                    <Reviews reviews={product.reviews} id={product.id}/>
+                    {settings?.allowReview==='yes' ? <ReviewFrom id={product.id} />: null }
                   </div>
                 )}
               </div>
@@ -230,7 +204,6 @@ export const ProductDetails = () => {
           alt=''
         />
       </div>
-      {/* <!-- PRODUCT EOF   --> */}
     </>
   );
 };

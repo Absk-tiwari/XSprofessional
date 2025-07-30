@@ -1,7 +1,6 @@
 import { MostViewed } from 'components/shared/MostViewed/MostViewed';
 import { ProductDetails } from 'components/Product/ProductDetails/ProductDetails';
 import {PublicLayout} from 'layout/PublicLayout';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const breadcrumbsData = [

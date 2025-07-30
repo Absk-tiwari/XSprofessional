@@ -1,15 +1,14 @@
 import Link from 'next/link';
 
 export const Card = ({ order }) => {
-  const { image, name, price, productNumber, id, quantity } = order;
-
+  const { imageGallery, image, name, price, productNumber, id, quantity } = order;
   return (
     <>
       {/* <!-- BEING ORDER ITEM CARD --> */}
       <div className='checkout-order__item'>
         <Link href={`/product/${id}`}>
           <a className='checkout-order__item-img'>
-            <img src={process.env.NEXT_PUBLIC_BASE_PATH+image} className='js-img' alt='' />
+            <img src={image} className='js-img' alt='' />
           </a>
         </Link>
         <div className='checkout-order__item-info'>
@@ -19,7 +18,7 @@ export const Card = ({ order }) => {
             </a>
           </Link>
           <span className='checkout-order__item-price'>
-          ₹{(price * quantity).toFixed(2)}
+          &#8377;{(price * quantity).toFixed(2)}
           </span>
           <span className='checkout-order__item-num'>SKU: {productNumber}</span>
         </div>

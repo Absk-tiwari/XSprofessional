@@ -58,7 +58,7 @@ export const Header = () => {
           <div className='header-logo'>
             <Link href='/'>
               <a>
-                <img src={process.env.NEXT_PUBLIC_BASE_PATH+header.logo} style={{height:100}} alt='' />
+                <img src={process.env.NEXT_PUBLIC_BASE_PATH+"/images/logo-sm.png"} style={{height:60}} alt='' />
               </a>
             </Link>
           </div>
@@ -74,13 +74,13 @@ export const Header = () => {
                   </a>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href='/profile'>
                   <a>
                     <i className='icon-user'></i>
                   </a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href='/wishlist'>
                   <a>

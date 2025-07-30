@@ -29,6 +29,7 @@ class RoutingController extends BaseController
         if (Auth::user()) {
             return redirect('admin/dashboard');
         } else {
+            // dd("yaha?");
             return redirect()->route('login');
         }
     }
@@ -48,7 +49,7 @@ class RoutingController extends BaseController
      */
     public function secondLevel(Request $request, $first, $second)
     {
-        
+
         return view($first . '.' . $second);
     }
 
@@ -59,5 +60,5 @@ class RoutingController extends BaseController
     {
         return view($first . '.' . $second . '.' . $third);
     }
-    
+
 }

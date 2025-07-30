@@ -9,18 +9,18 @@ export const Card = ({ wish }) => {
         <div className='cart-table__col'>
           <Link href={`/product/${id}`}>
             <a className='cart-table__img'>
-              <img src={process.env.NEXT_PUBLIC_BASE_PATH+image} className='js-img' alt='' />
+              <img src={image} className='js-img' alt='' />
             </a>
           </Link>
           <div className='cart-table__info'>
-            <Link href={`/product/${id}`}>
+            <Link href={`/product?id=${id}`}>
               <a className='title5'>{name}</a>
             </Link>
             <span className='cart-table__info-num'>SKU: {productNumber}</span>
           </div>
         </div>
         <div className='cart-table__col'>
-          <span className='cart-table__price'>${price}</span>
+          <span className='cart-table__price'>&#8377;{price}</span>
         </div>
         <div className='cart-table__col'>
           {isStocked ? (
@@ -31,7 +31,7 @@ export const Card = ({ wish }) => {
         </div>
         <div className='cart-table__col'>
           <span className='cart-table__total'>
-            <Link href={`/product/${id}`}>
+            <Link href={`/product?id=${id}`}>
               <a className='blog-item__link'>
                 buy now <i className='icon-arrow-md'></i>
               </a>

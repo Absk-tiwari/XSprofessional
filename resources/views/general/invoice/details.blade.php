@@ -2,6 +2,16 @@
 
 @section('content')
 
+<style>
+    @media print {
+        .card-body {
+            margin-top: 5em!important;
+        }
+    }
+</style>
+<?php
+$tax = App\Models\Setting::whereKey('taxRate')->first('value')?->value;
+?>
 <div class="row justify-content-center">
     <div class="col-lg-8">
         <div class="card">
@@ -10,14 +20,14 @@
                 <div class="clearfix pb-3 bg-info-subtle p-lg-3 p-2 m-n2 rounded position-relative">
                     <div class="float-sm-start">
                         <div class="auth-logo">
-                            <img class="logo-dark me-1" src="/images/logo-dark.png" alt="logo-dark" height="24" />
+                            <img class="logo-dark me-1" src="{{asset('images/logo-sm.png')}}" alt="logo-dark" height="35" />
                         </div>
                         <div class="mt-4">
-                            <h4>Larkon Admin.</h4>
+                            <h4>XS Admin.</h4>
                             <address class="mt-3 mb-0">
-                                1729 Bangor St,<br>
-                                Houlton, ME, 04730 , United States <br>
-                                <abbr title="Phone">Phone:</abbr> +1(142)-532-9109
+                                J 15/92-A,<br>
+                                Tata Company Varanasi 221001, India<br>
+                                <abbr title="Phone">Phone:</abbr> +91 63880 47817
                             </address>
                         </div>
                     </div>
@@ -29,7 +39,7 @@
                                         <td class="p-0 pe-5 py-1">
                                             <p class="mb-0 text-dark fw-semibold"> Invoice : </p>
                                         </td>
-                                        <td class="text-end text-dark fw-semibold px-0 py-1">#INV-0758267/90</td>
+                                        <td class="text-end text-dark fw-semibold px-0 py-1">#INV-{{$order->id}}</td>
                                     </tr>
                                     <tr>
                                         <td class="p-0 pe-5 py-1">
@@ -47,15 +57,15 @@
                                         <td class="p-0 pe-5 py-1">
                                             <p class="mb-0">Amount : </p>
                                         </td>
-                                        <td class="text-end text-dark fw-medium px-0 py-1">$737.00</td>
+                                        <td class="text-end text-dark fw-medium px-0 py-1">{{number_format($order->total,2)}} ₹</td>
                                     </tr>
                                     <tr>
+                                        <?php $stat = $order->payment_status==="unpaid"? "primary": "success" ?>
                                         <td class="p-0 pe-5 py-1">
                                             <p class="mb-0">Status : </p>
                                         </td>
-                                        <td class="text-end px-0 py-1"><span class="badge bg-success text-white  px-2 py-1 fs-13">Paid</span></td>
+                                        <td class="text-end px-0 py-1"><span class="badge bg-{{$stat}} text-white  px-2 py-1 fs-13">{{ucfirst($order->payment_status)}}</span></td>
                                     </tr>
-
 
                                 </tbody>
                             </table>
@@ -71,10 +81,10 @@
                         <div class="">
                             <h4 class="card-title">Issue From :</h4>
                             <div class="mt-3">
-                                <h4>Larkon Admin.INC</h4>
-                                <p class="mb-2">2437 Romano Street Cambridge, MA 02141</p>
-                                <p class="mb-2"><span class="text-decoration-underline">Phone :</span> +(31)781-417-2004</p>
-                                <p class="mb-2"><span class="text-decoration-underline">Email :</span> JulianeKuhn@jourrapide.com</p>
+                                <h4>XS Admin</h4>
+                                <p class="mb-2">J 15/92-A, Tata Company Varanasi, 221001</p>
+                                <p class="mb-2"><span class="text-decoration-underline">Phone :</span> +91 63880 47817</p>
+                                <p class="mb-2"><span class="text-decoration-underline">Email :</span> xytilesstudioprofessional@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -82,16 +92,14 @@
                         <div class="">
                             <h4 class="card-title">Issue For :</h4>
                             <div class="mt-3">
-                                <h4>Gaston Lapierre</h4>
-                                <p class="mb-2">1344 Hershell Hollow Road WA 98168 , USA</p>
-                                <p class="mb-2"><span class="text-decoration-underline">Phone :</span> +(123) 732-760-5760</p>
-                                <p class="mb-2"><span class="text-decoration-underline">Email :</span> hello@dundermuffilin.com</p>
+                                <h4>{{$order->name}}</h4>
+                                <p class="mb-2">{{$order->address}}</p>
+                                <p class="mb-2"><span class="text-decoration-underline">Phone :</span> +91 {{ $order->phone }}</p>
+                                <p class="mb-2"><span class="text-decoration-underline">Email :</span> {{$order->email}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive table-borderless text-nowrap table-centered">
@@ -106,80 +114,35 @@
                                     </tr>
                                 </thead> <!-- end thead -->
                                 <tbody>
+                                @foreach ($order->orderData as $row)
+                                    <?php $product = App\Models\Product::findOrFail($row->id);
+                                    $image = json_decode($product->imageGallery[0])->thumbnail;
+                                    ?>
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-3">
                                                 <div class="rounded bg-light avatar d-flex align-items-center justify-content-center">
-                                                    <img src="/images/product/p-1.png" alt="" class="avatar">
+                                                    <img src="{{$image}}?fdg" alt="" class="avatar">
                                                 </div>
                                                 <div>
-                                                    <a href="#!" class="text-dark fw-medium fs-15">Men Black Slim Fit T-shirt</a>
-                                                    <p class="text-muted mb-0 mt-1 fs-13"><span>Size : </span>M</p>
+                                                    <a href="#!" class="text-dark fw-medium fs-15">{{$product->name}}</a>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>1</td>
-                                        <td>$80.00</td>
-                                        <td>$3.00</td>
-                                        <td class="text-end">$83.00</td>
+                                        <td>{{$row->quantity??1}}</td>
+                                        <td>{{number_format($row->price,2)}} ₹</td>
+                                        <?php
+                                            $taxedAmt = $tax ? $row->price * ($tax / 100): 0.00;
+                                        ?>
+                                        <td>{{ number_format($taxedAmt,2) }} ₹</td>
+                                        <td class="text-end">{{number_format($row->price,2)}} ₹</td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="rounded bg-light avatar d-flex align-items-center justify-content-center">
-                                                    <img src="/images/product/p-5.png" alt="" class="avatar">
-                                                </div>
-                                                <div>
-                                                    <a href="#!" class="text-dark fw-medium fs-15">Dark Green Cargo Pent</a>
-                                                    <p class="text-muted mb-0 mt-1 fs-13"><span>Size : </span>M</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>3</td>
-                                        <td>$110.00</td>
-                                        <td>$4.00</td>
-                                        <td class="text-end">$330.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="rounded bg-light avatar d-flex align-items-center justify-content-center">
-                                                    <img src="/images/product/p-8.png" alt="" class="avatar">
-                                                </div>
-                                                <div>
-                                                    <a href="#!" class="text-dark fw-medium fs-15">Men Dark Brown Wallet</a>
-                                                    <p class="text-muted mb-0 mt-1 fs-13"><span>Size : </span>S</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>1</td>
-                                        <td>$132.00</td>
-                                        <td>$5.00</td>
-                                        <td class="text-end">$137.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="rounded bg-light avatar d-flex align-items-center justify-content-center">
-                                                    <img src="/images/product/p-10.png" alt="" class="avatar">
-                                                </div>
-                                                <div>
-                                                    <a href="#!" class="text-dark fw-medium fs-15">Kid's Yellow T-shirt</a>
-                                                    <p class="text-muted mb-0 mt-1 fs-13"><span>Size : </span>S</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>2</td>
-                                        <td>$110.00</td>
-                                        <td>$5.00</td>
-                                        <td class="text-end">$223.00</td>
-                                    </tr>
-                                </tbody> <!-- end tbody -->
-                            </table> <!-- end table -->
-                        </div> <!-- end table responsive -->
-                    </div> <!-- end col -->
-                </div> <!-- end row -->
-
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <div class="row justify-content-end">
                     <div class="col-lg-5 col-6">
                         <div class="table-responsive">
@@ -189,13 +152,7 @@
                                         <td class="text-end p-0 pe-5 py-2">
                                             <p class="mb-0"> Sub Total : </p>
                                         </td>
-                                        <td class="text-end text-dark fw-medium  py-2">$777.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-end p-0 pe-5 py-2">
-                                            <p class="mb-0">Discount : </p>
-                                        </td>
-                                        <td class="text-end text-dark fw-medium  py-2">-$60.00</td>
+                                        <td class="text-end text-dark fw-medium  py-2">{{number_format($order->total,2)}} ₹</td>
                                     </tr>
                                     <tr>
                                         <td class="text-end p-0 pe-5 py-2">
@@ -207,7 +164,7 @@
                                         <td class="text-end p-0 pe-5 py-2">
                                             <p class="mb-0 text-dark fw-semibold">Grand Amount : </p>
                                         </td>
-                                        <td class="text-end text-dark fw-semibold  py-2">$737.00</td>
+                                        <td class="text-end text-dark fw-semibold  py-2">{{number_format($order->total, 2)}} ₹</td>
                                     </tr>
                                 </tbody>
                             </table>

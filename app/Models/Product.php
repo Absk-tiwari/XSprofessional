@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -18,6 +19,16 @@ class Product extends Model
         static::creating(function ($product) {
             $product->productNumber = $product->generateSku();
         });
+        // Auto-delete images when deleting the product
+        static::deleting(function ($product) {
+            $images = $product->imageGallery ?? [];
+            foreach ($images as $image) {
+                foreach(array_values((array)json_decode($image)) as $img) {
+                    $img = explode('storage/', $img)[1];
+                    Storage::disk('public')->delete($img);
+                }
+            }
+        });
     }
 
     public function generateSku()
@@ -29,7 +40,7 @@ class Product extends Model
     }
     public function reviews():HasMany
     {
-        return $this->hasMany(Review::class,'product_id');
+        return $this->hasMany(Review::class);
     }
 
     public function imageGallery():Attribute

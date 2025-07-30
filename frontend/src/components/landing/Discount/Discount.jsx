@@ -6,17 +6,21 @@ export const Discount = () => {
       {/* <!-- BEGIN DISCOUNT --> */}
       <div
         className='discount js-img'
-        style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH}/assets/img/discount-bg.jpg')` }}
+        style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_PATH_PREFIX}/assets/img/discount-bg.jpg')` }}
       >
         <div className='wrapper'>
           <div className='discount-info'>
             <span className='saint-text'>Discount</span>
             <span className='main-text'>
-              Get Your <span>50%</span> Off
+              Get Upto <span>50%</span> Off On Your Hair Goals
             </span>
             <p>
-              Nourish your skin with toxin-free cosmetic products. With the
-              offers that you can’t refuse.
+              Ready to transform your hair game? Now’s the time!
+            </p>
+            <p className='p-2'>Enjoy <b>discounts</b> on our top-rated hair care range – from strengthening serums to deep-repair masks, made with safe, toxin-free ingredients.</p>
+
+            <p>
+                <b>Shine. Strength. Style</b>
             </p>
 
             <Link href='/shop'>

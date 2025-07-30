@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const Card = ({ cart, onChangeQuantity }) => {
   const {
     name,
+    imageGallery,
     image,
     id,
     isStocked,
@@ -18,7 +19,7 @@ export const Card = ({ cart, onChangeQuantity }) => {
         <div className='cart-table__col'>
           <Link href={`/product?id=${id}`}>
             <a className='cart-table__img'>
-              <img src={process.env.NEXT_PUBLIC_BASE_PATH+image} className='js-img' alt='' />
+              <img src={image} className='js-img' alt='' />
             </a>
           </Link>
           <div className='cart-table__info'>
@@ -34,10 +35,10 @@ export const Card = ({ cart, onChangeQuantity }) => {
         <div className='cart-table__col'>
           {oldPrice ? (
             <span className='cart-table__price'>
-              <span>₹{oldPrice}</span>₹{price}
+              <span>&#8377;{oldPrice}</span>&#8377;{price}
             </span>
           ) : (
-            <span className='cart-table__price'>₹{price}</span>
+            <span className='cart-table__price'>&#8377;{price}</span>
           )}
         </div>
         <div className='cart-table__col'>
@@ -66,7 +67,7 @@ export const Card = ({ cart, onChangeQuantity }) => {
         </div>
         <div className='cart-table__col'>
           <span className='cart-table__total'>
-          ₹{(price * quantity).toFixed(2)}
+          &#8377;{(price * quantity).toFixed(2)}
           </span>
         </div>
       </div>

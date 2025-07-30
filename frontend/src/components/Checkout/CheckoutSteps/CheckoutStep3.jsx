@@ -1,18 +1,41 @@
-import { useState, useEffect } from "react";
+import axios from "axios";
+import { CartContext } from "pages/_app";
+import { useState, useEffect, useContext } from "react";
+import toast from "react-hot-toast";
+import api from "utils/api";
 
 export const CheckoutStep3 = () => {
-  const [reservedDate, setReservedDate] = useState("");
+    const { orderDetails, setOrderDetails } = useContext(CartContext);
   const [loadingDate, setLoadingDate] = useState("");
+
+  const downloadReceipt = async e => {
+    try {
+
+        const {data} = await axios.get(process.env.NEXT_PUBLIC_API_URL+ '/download-receipt/'+ orderDetails.order.orderNumber, {
+            responseType:"blob"
+        });
+        const url = window.URL.createObjectURL(new Blob([data]))
+        const link = document.createElement('a')
+        a.href = link;
+        a.download = "orderDetails.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        window.URL.revokeObjectURL(url)
+
+    } catch (error) {
+        console.log(error)
+    }
+  }
 
   useEffect(() => {
     const formatDate = (daysFromToday) => {
       const date = new Date();
-      date.setDate(date.getDate() + daysFromToday); 
-      return date.toLocaleDateString("en-GB"); 
+      date.setDate(date.getDate() + daysFromToday);
+      return date.toLocaleDateString("en-GB");
     };
-
-    setReservedDate(formatDate(7)); 
-    setLoadingDate(formatDate(5)); 
+    setLoadingDate(formatDate(orderDetails?.delivery??7));
   }, []);
 
   return (
@@ -29,19 +52,16 @@ export const CheckoutStep3 = () => {
         </p>
         <ul className="checkout-purchase__list">
           <li>
-            <span>Order number</span> B-125724_75
+            <span>Order number</span> {orderDetails.order?.orderNumber??'#'}
           </li>
           <li>
             <span>Order status</span> Awaiting payment
           </li>
           <li>
-            <span>Reserved for</span> {reservedDate}
-          </li>
-          <li>
-            <span>Expected loading date</span> {loadingDate}
+            <span>Expected delivery date</span> {loadingDate}
           </li>
         </ul>
-        <a href="#" className="checkout-purchase__link">
+        <a href="#" className="checkout-purchase__link" onClick={downloadReceipt}>
           print a document -
         </a>
       </div>

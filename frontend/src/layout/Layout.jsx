@@ -2,6 +2,7 @@ import { Header } from '../components/shared/Header/Header';
 import { Insta } from 'components/shared/Insta/Insta';
 import { Footer } from 'components/shared/Footer/Footer';
 import { Toaster } from 'react-hot-toast';
+import { Whatsapp } from 'components/utils/Whatsapp';
 
 export const Layout = ({ children }) => {
   return (
@@ -17,6 +18,7 @@ export const Layout = ({ children }) => {
       <footer className='footer'>
         <Footer />
       </footer>
+      <Whatsapp/>
     </>
   );
 };

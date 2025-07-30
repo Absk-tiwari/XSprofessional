@@ -25,8 +25,10 @@ export const ProfileAside = () => {
           />
         </div>
         <div className='profile-aside__viewed'>
+        { recentlyViewed.length ?
+        <>
           <h5>You have viewed</h5>
-          {recentlyViewed.map((product) => (
+          { recentlyViewed.map(product => (
             <div key={product.id} className='profile-aside__viewed-item'>
               <Link href={`/product/${product.id}`}>
                 <a className='profile-aside__viewed-item-img'>
@@ -45,10 +47,12 @@ export const ProfileAside = () => {
               </div>
             </div>
           ))}
+        </>
+        : null }
         </div>
         <div
           className='profile-aside__discount js-img'
-          style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH}/assets/img/discount-bg-sm.jpg')` }}
+          style={{ backgroundImage: `url('${process.env.NEXT_PUBLIC_PATH_PREFIX}/assets/img/discount-bg-sm.jpg')` }}
         >
           <div className='profile-aside__discount-title'>
             Get Your

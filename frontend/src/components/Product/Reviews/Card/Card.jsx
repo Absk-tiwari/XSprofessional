@@ -1,18 +1,20 @@
+import { placeholder } from "data/data.header";
+
 export const Card = ({ review }) => {
-  const { author, reviewDate, rating, content } = review;
+  const { info:author, created_at:reviewDate, rating, content } = review;
   return (
     <>
       {/* Being Product Review */}
       <div className='review-item'>
         <div className='review-item__head'>
           <div className='review-item__author'>
-            <img src={process.env.NEXT_PUBLIC_BASE_PATH+author.image} className='js-img' alt='' />
+            <img src={placeholder.profile} className='js-img' alt='' />
             <span className='review-item__name'>{author.name}</span>
             <span className='review-item__date'>{reviewDate}</span>
           </div>
           <div className='review-item__rating'>
             <ul className='star-rating'>
-              {[...Array(rating)].map((star, index) => {
+              {Array(Number(rating)).fill('a').map((star, index) => {
                 return (
                   <li key={index}>
                     <i className='icon-star'></i>

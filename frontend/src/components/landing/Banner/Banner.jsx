@@ -1,17 +1,20 @@
 import Link from 'next/link';
 
 export const Banner = () => {
+    const mainBG = process.env.NEXT_PUBLIC_BASE_PATH + "/assets/img/main-bg.jpg"
+    console.log(mainBG)
   return (
     <>
-      {/* <!-- BEGIN MAIN BLOCK --> */}
-      <div className='main-block load-bg'>
+      <div className='main-block load-bg' style={{ backgroundImage: `url(${mainBG})` }}>
         <div className='wrapper'>
           <div className='main-block__content'>
             <span className='saint-text'>Professional</span>
             <h1 className='main-text'>Beauty &amp; Care</h1>
             <p>
-              Nourish your skin with toxin-free cosmetic products. With the
-              offers that you can’t refuse.
+            <b>Because beautiful hair is always in style.</b>
+            </p>
+            <p>
+                Indulge in our toxin-free, salon-grade haircare range made to nourish, repair, and style your strands with love.
             </p>
 
             <Link href='/shop'>
@@ -25,7 +28,6 @@ export const Banner = () => {
           alt=''
         />
       </div>
-      {/* <!-- MAIN BLOCK EOF --> */}
     </>
   );
 };

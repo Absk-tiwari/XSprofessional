@@ -37,7 +37,6 @@ export const ContactInfo = () => {
           </div>
         </div>
       </div>
-      {/* <!-- CONTACTS INFO EOF   -->  */}
     </>
   );
 };

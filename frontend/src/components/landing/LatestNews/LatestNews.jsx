@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Blogs } from 'components/Blog/Blogs/Blogs';
+import { Blogs } from 'components/Treatment/Blogs/Treatments';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 import blogData from 'data/blog/blog';
 

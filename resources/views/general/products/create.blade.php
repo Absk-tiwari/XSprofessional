@@ -5,16 +5,19 @@
 @endsection
 
 @section('content')
+<style>
+    .fs-14.mb-1 {line-break:anywhere}
+    #dropzone-preview .d-flex.p-2{align-items:center}
+</style>
 
 <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <!-- Image Upload -->
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Add Product Image</h4>
         </div>
         <div class="card-body">
-            <input type="file" multiple="multiple" name="images[]" class="d-none img-">
+            <input type="file" multiple="multiple" name="images[]" class="d-none img-" accept="image/*">
             <div class="dropzone bg-light-subtle py-5 dz-clickable">
                 <div class="dz-message needsclick" onclick="recall()">
                     <i class="bx bx-cloud-upload fs-48 text-primary"></i>
@@ -25,9 +28,10 @@
                 </div>
             </div>
 
-            <ul class="list-unstyled mb-0" id="dropzone-preview">
-
-            </ul>
+            <div class="list-unstyled mb-0" id="dropzone-preview">
+                <li class="mt-2 row" id="dropzone-preview-list">
+                </li>
+            </div>
         </div>
     </div>
 
@@ -61,6 +65,14 @@
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" name="description" id="description" rows="7" placeholder="Short description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="product-stock" class="form-label">Stock</label>
+                        <input type="number" name="stock" id="product-stock" class="form-control" value="10" required>
                     </div>
                 </div>
             </div>
@@ -105,50 +117,59 @@
     </div>
 </form>
 <script>
-    const images = [];
+    const images = {};
     const b64 = [];
     function recall(){
         $('.img-').trigger('click')
     }
+
+    function removeSpecificFile(index) {
+        const input = document.querySelector('.img-')
+        delete images[index];
+        const newFileList = Object.values(images)
+        let dataTransfer = new DataTransfer();
+        input.files=null
+        input.value=''
+        newFileList.forEach(file => dataTransfer.items.add(file));
+        input.files = dataTransfer.files;
+        event.preventDefault()
+        $('div[data-index="'+index+'"]').remove()
+    }
+
     $('input[name="images[]"]').on('change', function(e){
         let files = e.target.files;
 
-        [...files].forEach( file => {
-            images.push(file)
-            console.log('pushing', file)
+        [...files].forEach( (file,i) => {
+            images[i] = file
             var reader = new FileReader();
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file,i);
             reader.onload = function() {
-                makePreview(reader.result);
+                makePreview(reader.result, file.name, i);
             }
         })
     })
-
-    function makePreview(b) {
-            $('#dropzone-preview').append('<li class="mt-2" id="dropzone-preview-list">\
-                <div class="border rounded">\
-                    <div class="d-flex p-2">\
+    let i = 0;
+    function makePreview(b64, name,index) {
+            $('#dropzone-preview-list').append('<div class="mt-2 col-4" data-index="'+index+'">\
+                    <div class="d-flex p-2 border rounded">\
                         <div class="flex-shrink-0 me-3">\
-                            <div class="avatar-sm bg-light rounded">\
-                                <img data-dz-thumbnail class="img-fluid rounded d-block" src="'+b+'" alt="Image" />\
+                            <div class="avatar-lg bg-light rounded">\
+                                <img data-dz-thumbnail class="img-fluid rounded d-block h-100" src="'+b64+'" alt="Image" />\
                             </div>\
                         </div>\
                         <div class="flex-grow-1">\
                             <div class="pt-1">\
-                                <h5 class="fs-14 mb-1" data-dz-name>&</h5>\
+                                <h5 class="fs-14 mb-1" data-dz-name>'+name+'</h5>\
                                 <p class="fs-13 text-muted mb-0" data-dz-size></p>\
                                 <strong class="error text-primary" data-dz-errormessage></strong>\
                             </div>\
                         </div>\
                         <div class="flex-shrink-0 ms-3">\
-                            <button data-dz-remove class="btn btn-sm btn-primary">Delete</button>\
+                            <button data-dz-remove class="btn btn-sm btn-primary" onclick="removeSpecificFile('+index+')">Delete</button>\
                         </div>\
                     </div>\
-                </div>\
-            </li>')
+                </div>')
+            i+=1;
     }
 </script>
-@endsection
-
-@section('script-bottom')
 @endsection

@@ -2,13 +2,14 @@ import { PromoVideo } from 'components/shared/PromoVideo/PromoVideo';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 import { useState } from 'react';
 import PromoNumberData from 'data/promoNumber/promoNumber';
+import { placeholder } from 'data/data.header';
 
 export const AboutPromo = () => {
   const [play, setPlay] = useState(false);
 
   const promoNumber = [...PromoNumberData];
   const url = play
-    ? '../../../../public/assets/videos/promo.mp4'
+    ? placeholder.promoVideo
     : '';
   return (
     <>

@@ -40,22 +40,5 @@
         "path": "/categories"
       }
     ]
-  },
-  {
-    "title": "Useful links",
-    "navLinks": [
-      {
-        "name": "Careers",
-        "path": "/about"
-      },
-      {
-        "name": "Terms of use",
-        "path": "/about"
-      },
-      {
-        "name": "Information",
-        "path": "/about"
-      }
-    ]
   }
 ]

@@ -1,61 +1,61 @@
 import { ProductsCarousel } from 'components/Product/Products/ProductsCarousel';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 import { useEffect, useState } from 'react';
-import productData from 'data/product/product';
-import api from 'utils/api';
-
+import { useGetTrendingProductsQuery } from 'services/api';
+import { useDispatch } from 'react-redux';
+import { setTrending } from 'reducers/theReducer';
 export const Trending = () => {
-  const trendingProducts = [...productData];
-  const [products, setProducts] = useState(trendingProducts);
-  const [filterItem, setFilterItem] = useState('makeup');
-  useEffect(()=> {
-    api.get('api/trending-products').then(({data})=> {
-      console.log(data)
-    }).catch( er => console.log(er))
-  },[])
 
-  useEffect(() => {
-    const newItems = trendingProducts.filter((pd) =>
-      pd.filterItems.includes(filterItem)
-    );
-    setProducts(newItems);
-  }, [filterItem]);
+    const { data, isLoading } = useGetTrendingProductsQuery()
+    const dispatch = useDispatch()
+    const [trendingProducts, setTrendingProducts] = useState(data?.data? data.data: []);
+    const [products, setProducts] = useState(data?.data? data.data: trendingProducts);
+    const [filterItem, setFilterItem] = useState(null);
 
-  const filterList = [
-    {
-      name: 'Make Up',
-      value: 'makeup',
-    },
+    useEffect(() => {
+        if(data?.data){
+          dispatch(setTrending(data.data))
+          setTrendingProducts(data.data)
+          setProducts(data.data)
+        }
+    },[data]);
+
+    useEffect(() => {
+        const newItems = trendingProducts.filter( pd => {
+            if(filterItem) {
+                return pd.category === filterItem
+            }
+            return pd
+        });
+        setProducts(newItems);
+    },[filterItem]);
+
+    const filterList = [
     {
       name: 'SPA',
-      value: 'spa',
+      value: 'SPA',
     },
     {
-      name: 'Perfume',
-      value: 'perfume',
+      name: 'Skin Care',
+      value: 'Skin Care',
     },
     {
-      name: 'Nails',
-      value: 'nail',
+      name: 'Hair Care',
+      value: 'Hair Care',
     },
     {
-      name: 'Skin care',
-      value: 'skin',
-    },
-    {
-      name: 'Hair care',
-      value: 'hair',
-    },
+      name: 'Treatment',
+      value: 'Treatment',
+    }
   ];
   return (
     <>
-      {/* <!-- BEGIN TRENDING --> */}
       <section className='trending'>
         <div className='trending-content'>
           <SectionTitle
             subTitle='Cosmetics'
             title='Trending products'
-            body='Nourish your skin with toxin-free cosmetic products. With the offers that you can’t refuse.'
+            body='Trending Hair Must-Haves – Because Your Hair Deserves the Best.Discover our bestselling hair care products designed to revive, protect, and beautify your strands'
           />
           <div className='tab-wrap trending-tabs'>
             <ul className='nav-tab-list tabs'>
@@ -70,12 +70,11 @@ export const Trending = () => {
               ))}
             </ul>
             <div className='products-items'>
-              <ProductsCarousel products={products} />
+                <ProductsCarousel products={products} loading={isLoading}/>
             </div>
           </div>
         </div>
       </section>
-      {/* <!-- TRENDING EOF   --> */}
     </>
   );
 };

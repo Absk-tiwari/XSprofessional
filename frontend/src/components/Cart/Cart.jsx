@@ -3,6 +3,7 @@ import socialData from 'data/social';
 import { CartContext } from 'pages/_app';
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { placeholder } from 'data/data.header';
 
 export const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -15,7 +16,6 @@ export const Cart = () => {
   );
 
   const handleProductQuantity = (change, quantity, id) => {
-    console.log(change, quantity, id);
     if (change === 'increment') {
       cart.find((item) => item.id === id).quantity = quantity + 1;
       setCount(count + 1);
@@ -35,28 +35,34 @@ export const Cart = () => {
       {/* <!-- BEGIN CART --> */}
       <div className='cart'>
         <div className='wrapper'>
-          <div className='cart-table'>
+        {cart.length===0 ? (<>
+            <img src={placeholder.noProduct} className='js-img'/>
+        </>) : (<>
+        <div className='cart-table'>
             <div className='cart-table__box'>
-              <div className='cart-table__row cart-table__row-head'>
-                <div className='cart-table__col'>Product</div>
-                <div className='cart-table__col'>Price</div>
-                <div className='cart-table__col'>Quantity</div>
-                <div className='cart-table__col'>Total</div>
-              </div>
-
-              {cart.map((cart) => (
-                <Card
-                  onChangeQuantity={(change, quantity) =>
-                    handleProductQuantity(change, quantity, cart.id)
-                  }
-                  key={cart.id}
-                  cart={cart}
-                />
-              ))}
+                <div className='cart-table__row cart-table__row-head'>
+                    <div className='cart-table__col'>Product</div>
+                    <div className='cart-table__col'>Price</div>
+                    <div className='cart-table__col'>Quantity</div>
+                    <div className='cart-table__col'>Total</div>
+                </div>
+                {cart.map((cart) => (
+                    <Card
+                    onChangeQuantity={(change, quantity) =>
+                        handleProductQuantity(change, quantity, cart.id)
+                    }
+                    key={cart.id}
+                    cart={cart}
+                    />
+                ))}
             </div>
-          </div>
+        </div>
+        </>)}
+
           <div className='cart-bottom'>
-            <div className='cart-bottom__promo'>
+            {cart.length ?
+             (<>
+             <div className='cart-bottom__promo'>
               <form className='cart-bottom__promo-form'>
                 <div className='box-field__row'>
                   <div className='box-field'>
@@ -82,7 +88,7 @@ export const Cart = () => {
                 <span>Find us here:</span>
                 <ul>
                   {socialLinks.map((social, index) => (
-                    <li key={index}>
+                      <li key={index}>
                       <a href={social.path} target='_blank'>
                         <i className={social.icon}></i>
                       </a>
@@ -94,7 +100,7 @@ export const Cart = () => {
             <div className='cart-bottom__total'>
               <div className='cart-bottom__total-goods'>
                 Goods on
-                <span>₹{total.toFixed(2)}</span>
+                <span>&#8377;{total.toFixed(2)}</span>
               </div>
               <div className='cart-bottom__total-promo'>
                 Discount on promo code
@@ -102,12 +108,17 @@ export const Cart = () => {
               </div>
               <div className='cart-bottom__total-num'>
                 total:
-                <span>₹{total.toFixed(2)}</span>
+                <span>&#8377;{total.toFixed(2)}</span>
               </div>
               <Link href='/checkout'>
                 <a className='btn'>Checkout</a>
               </Link>
             </div>
+             </>)
+                : <Link href='/shop'>
+                <a className='btn'>go shopping</a>
+            </Link>}
+
           </div>
         </div>
         <img
