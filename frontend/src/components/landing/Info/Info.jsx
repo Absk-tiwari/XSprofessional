@@ -13,9 +13,7 @@ export const Info = () => {
     <>
       {/* <!-- BEGIN INFO BLOCKS --> */}
       <div className='info-blocks'>
-        <div
-          className='info-blocks__item js-img'
-        >
+        <div className='info-blocks__item js-img'>
           <div className='wrapper'>
             <div className='info-blocks__item-img'>
               <img

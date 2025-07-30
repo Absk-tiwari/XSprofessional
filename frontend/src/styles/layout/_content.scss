@@ -617,7 +617,7 @@ h6,
 // advantages
 
 .advantages {
-  padding-top: 190px;
+  padding-top: 150px;
 
   &-items {
     display: flex;
@@ -947,7 +947,7 @@ h6,
 
 .arrivals {
   overflow-x: hidden;
-  padding-top: 188px;
+  padding-top: 140px;
 
   .trending-top {
     margin-bottom: 58px;
@@ -1093,7 +1093,7 @@ h6,
 // subscribe
 
 .subscribe {
-  margin-top: 180px;
+  margin-top: 150px;
   background-color: #fcedea;
   &-form {
     background-color: #fcedea;
@@ -1101,6 +1101,7 @@ h6,
     align-items: center;
     padding: 0 87px 0 60px;
     overflow: hidden;
+    justify-content: space-between;
 
     &__img {
       position: relative;
@@ -1112,6 +1113,8 @@ h6,
         min-height: 50px;
         position: relative;
         display: block;
+        width: 290px;
+
       }
 
       &:after {
@@ -1135,6 +1138,8 @@ h6,
       z-index: 1;
       margin-top: -5px;
       width: calc(100% - 425px);
+      
+
     }
 
     .box-field__row {
@@ -1331,8 +1336,8 @@ h6,
 }
 
 .promo-video {
-  padding-top: 245px;
-  margin-bottom: 185px;
+  padding-top: 185px;
+  margin-bottom: 155px;
   position: relative;
 
   &__decor {

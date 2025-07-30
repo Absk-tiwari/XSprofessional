@@ -15,38 +15,7 @@ export const Footer = () => {
     <>
       <footer className='footer'>
         <div className='wrapper'>
-          <div className='footer-top'>
-            <div className='footer-top__social'>
-              <span>Find us here:</span>
-              <ul>
-                {footerSocial.map((social, index) => (
-                  <li key={index}>
-                    <a href={social.path}>
-                      <i className={social.icon}></i>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className='footer-top__logo'>
-              <Link href='/'>
-                <a>
-                  <img src={process.env.NEXT_PUBLIC_BASE_PATH+footerLogo} height={100} className='js-img' alt='' />
-                </a>
-              </Link>
-            </div>
-
-            <div className='footer-top__payments'>
-              <span>Payment methods:</span>
-              <ul>
-                {paymentMethods.map((payment, index) => (
-                  <li key={index}>
-                    <img src={process.env.NEXT_PUBLIC_BASE_PATH+payment.icon} className='js-img' alt='' />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+         
           <div className='footer-nav'>
             {footerNav.map((nav, index) => (
               <NavCol nav={nav} key={index} />
@@ -55,7 +24,7 @@ export const Footer = () => {
               <span className='footer-nav__col-title'>Contact</span>
               <ul>
                 <li>
-                  <i className='icon-map-pin'></i>J 15/92-A Tata Company Varanasi 221001, India
+                  <i className='icon-map-pin'></i> <a href="">J 15/92-A Tata Company Varanasi 221001, India</a>
                 </li>
                 <li>
                   <i className='icon-smartphone'></i>
@@ -68,6 +37,31 @@ export const Footer = () => {
                   <a href='mailto:xytilesstudioprofessional@gmail.com'>xytilesstudioprofessional@gmail.com</a>
                 </li>
               </ul>
+            </div>
+            <div className='footer-nav__col'>
+               <div className='footer-top__social'>
+              <span>Find us here:</span>
+              <ul>
+                {footerSocial.map((social, index) => (
+                  <li key={index}>
+                    <a href={social.path}>
+                      <i className={social.icon}></i>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          
+            <div className='footer-top__payments'>
+              <span>Payment methods:</span>
+              <ul>
+                {paymentMethods.map((payment, index) => (
+                  <li key={index}>
+                    <img src={process.env.NEXT_PUBLIC_BASE_PATH+payment.icon} className='js-img' alt='' />
+                  </li>
+                ))}
+              </ul>
+            </div>
             </div>
           </div>
           <div className='footer-copy'>

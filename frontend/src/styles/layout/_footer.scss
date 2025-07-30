@@ -102,6 +102,8 @@ footer {
       ul {
         li {
           margin-bottom: 8px;
+          display: flex;
+          align-items: center;
           &:last-of-type {
             margin-bottom: 0;
           }
@@ -139,7 +141,7 @@ footer {
             display: flex;
             color: #bbbbbb;
             line-height: 170%;
-            margin-bottom: 19px;
+            // margin-bottom: 19px;
             i {
               margin-right: 15px;
               padding-top: 4px;

@@ -16,6 +16,10 @@ export const navItem = [
     path: '/',
   },
   {
+    name: 'About us',
+    path: '/about',
+  },
+  {
     name: 'Treatment',
     path: '/treatment',
   },
@@ -69,10 +73,6 @@ export const navItem = [
   //     },
   //   ],
   // },
-  {
-    name: 'About us',
-    path: '/about',
-  },
   // {
   //   name: 'Categories',
   //   path: '/categories',
@@ -80,5 +80,5 @@ export const navItem = [
   {
     name: 'contact',
     path: '/contact',
-  },
+  }
 ];
